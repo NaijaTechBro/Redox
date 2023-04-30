@@ -23,7 +23,7 @@ const Hero = () => {
                 <p>Join over 2k+ readers. 100% free, unsubscribe anytime.</p>
             </div>
       <section className="right">
-      <img src="https://www.thedefiedge.com/content/images/2022/08/defi-mobile.png" />
+      <img src="https://res.cloudinary.com/dkcazf954/image/upload/v1682880617/redox-mockup_foog8w.png" />
       </section>
     </div>
   )}
