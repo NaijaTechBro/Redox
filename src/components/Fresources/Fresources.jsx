@@ -45,7 +45,7 @@ You want to learn from someone that will share useful information and NOT dump c
 </div>
 <h2>Recommended Books</h2>
 <div className="subsection">
-<iframe className="airtable-embed" src="https://airtable.com/embed/shrhIzH4tPZ3c6JuF?backgroundColor=purple&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533"></iframe>
+<iframe class="airtable-embed" src="https://airtable.com/embed/shr2pdfCU1kxPIxO3?backgroundColor=red&viewControls=on" frameborder="0" onmousewheel="" width="100%" height="533"></iframe>
 </div>
 <h2>Recommended Youtube Channels</h2>
 <div className="subsection">
