@@ -1,0 +1,60 @@
+.user-list {
+    margin: 20px auto;
+    width: 80%;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #32f062;
+    border: 1px solid #ddd;
+    padding: 8px;
+    font-weight: bold;
+  }
+  
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #ddd;
+  }
+  
+  .user-list button:first-child {
+    background-color: #32f062;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 9px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .user-list button:last-child {
+    background-color: #f30b0b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 9px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }

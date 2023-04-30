@@ -1,0 +1,287 @@
+@import url('https://fonts.cdnfonts.com/css/circular-std');
+
+.section {
+  display: flex;
+}
+   .left {
+    margin-left: 4rem;
+    margin-top: 6rem;
+  }
+  .left h1 {
+    color: #f3960b;
+    font-weight: 800;
+    font-size: 34px;
+    font-family: 'Circular Std', sans-serif;
+  }
+  .left p {
+    color: #72726c;
+    padding-top: 5px;
+
+  }
+  .left form {
+    margin-top: 1rem;
+  }
+  .left form button{
+    background-color: #f3960b;
+    width: 150px;
+    height: 61px;
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    border: none;
+  }
+
+  .left form input {
+    background-color: #fff;
+    width: 340px;
+    height: 55px;
+    font-size: 15px;
+    border-radius: 5px 0 0px 5px;
+  }
+
+  .right {
+    display: flex;
+    margin-left: 145px;
+  }
+
+  .right img {
+    width: 260px;
+  }
+
+
+
+  /* Responsiveness */
+
+
+  /* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+  .section {
+    display: flex;
+  }
+  .left {
+    margin-left: 2.5rem;
+    margin-top: 2rem;
+  }
+  .left h1 {
+    color: #f3960b;
+    font-weight: 800;
+    font-size: 32px;
+    font-family: 'Circular Std', sans-serif;
+  }
+  .left p {
+    color: #72726c;
+    font-size: 13px;
+    width: 285px;
+
+  }
+  .left form {
+    margin-top: 1rem;
+  }
+  .left form button{
+    margin-top: .4rem;
+    background-color: #f3960b;
+    width: 285px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+  }
+
+  .left form input {
+    background-color: #fff;
+    width: 280px;
+    height: 40px;
+    font-size: 13px;
+    border-radius: 5px 5px 5px 5px;
+  }
+
+  .right {
+    display: none;
+  } 
+  .right img {
+    display: none;
+  }
+}
+ 
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {
+  .section {
+    display: flex;
+  }
+   .left {
+    margin-left: 4rem;
+    margin-top: 3rem;
+  }
+  .left h1 {
+    color: #f3960b;
+    font-weight: 800;
+    font-size: 32px;
+    font-family: 'Circular Std', sans-serif;
+  }
+  .left p {
+    color: #72726c;
+    padding-top: 5px;
+
+  }
+  .left form {
+    margin-top: 1rem;
+  }
+  .left form button{
+    background-color: #f3960b;
+    margin: .3rem;
+    width: 280px;
+    height: 45px;
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 5px 5px 5px 5px;
+    border: none;
+  }
+
+  .left form input {
+    background-color: #fff;
+    width: 350px;
+    height: 55px;
+    font-size: 15px;
+    border-radius: 5px 0 0px 5px;
+  }
+  .right {
+    display: flex;
+    margin-right: 145px;
+  }
+} */
+
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {
+    main {
+    margin: 1rem;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 6rem;
+  }
+
+   .left {
+    margin-left: 4rem;
+    margin-top: 6rem;
+  }
+  .left h1 {
+    color: #f3960b;
+    font-weight: 800;
+    font-size: 34px;
+    font-family: 'Circular Std', sans-serif;
+  }
+  .left p {
+    color: #72726c;
+    padding-top: 5px;
+
+  }
+  .left form {
+    margin-top: 1rem;
+  }
+  .left form button{
+    background-color: #f3960b;
+    width: 350px;
+    height: 55px;
+    font-size: 15px;
+    margin-top: .6rem;
+    font-weight: 600;
+    color: #010101;
+    font-size: 19px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    border: none;
+  }
+
+  .left form input {
+    background-color: #fff;
+    width: 350px;
+    height: 55px;
+    font-size: 15px;
+    border-radius: 5px 0 0px 5px;
+  }
+
+  .right {
+    display: flex;
+    margin-right: 145px;
+  }
+
+  .right img {
+    display: none;
+  }
+
+
+} */
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {
+  main {
+    margin: 2rem;
+    margin-left: 5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 9rem;
+  }
+
+   .left {
+    margin-left: 4rem;
+    margin-top: 6rem;
+  }
+  .left h1 {
+    color: #f3960b;
+    font-weight: 800;
+    font-size: 34px;
+    font-family: 'Circular Std', sans-serif;
+  }
+  .left p {
+    color: #72726c;
+    padding-top: 5px;
+
+  }
+  .left form {
+    margin-top: 1rem;
+  }
+  .left form button{
+    background-color: #f3960b;
+    width: 150px;
+    height: 55px;
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    border: none;
+  }
+
+  .left form input {
+    background-color: #fff;
+    width: 350px;
+    height: 55px;
+    font-size: 15px;
+    border-radius: 5px 0 0px 5px;
+  }
+
+  .right {
+    display: flex;
+    margin-right: 145px;
+  }
+
+  .right img {
+    width: 260px;
+  }
+
+} */
+
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}
