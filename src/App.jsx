@@ -38,7 +38,7 @@ function App() {
             <Route path='/free-resources' element={<Fresources />} />
             <Route path='/crypto-news' element={<Blog />} />
             <Route path='/footer' element={<Footer />} />
-            
+            <Route path='/*' element={<Home />} />            
             {/* <Route path='/' /> */}
                         {/* Admin */}
             <Route path='/admin/create-post' element={<CreatePost />} />

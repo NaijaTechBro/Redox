@@ -28,11 +28,11 @@
 }
 
 .header nav a:hover{
-    color: #f3960b;
+    color: #ff5f00;
 }
 
 .header button {
-    color: #f3960b;
+    color: #ff5f00;
     background-color: #f0f0f0;
     border: none;
     padding: 12px 28px;
@@ -47,9 +47,9 @@
 
 .header button:hover {
     color: #fff;
-    border: #f3960b;
+    border: #ff5f00;
     border-color: #222;
-    background-color: #f3960b;
+    background-color: #ff5f00;
 }
 
 
@@ -89,7 +89,7 @@
   }
   
    .register-page button {
-    background-color: #f3960b;
+    background-color: #ff5f00;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -103,7 +103,7 @@
   }
   
    .register-page button:hover {
-    background-color: #f3960b;
+    background-color: #ff5f00;
   } 
   
   /* Login */
@@ -142,7 +142,7 @@
   }
 
   .login-page button {
-    background-color: #f3960b;
+    background-color: #ff5f00;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -156,7 +156,7 @@
   }
   
    .login-page button:hover {
-    background-color: #f3960b;
+    background-color: #ff5f00;
   } 
 
 
