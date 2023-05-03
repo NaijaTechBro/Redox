@@ -284,4 +284,56 @@
 
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {}
+@media only screen and (min-width: 1200px) {
+  
+.section {
+  display: flex;
+}
+   .left {
+    margin-left: 20rem;
+    margin-top: 6rem;
+  }
+  .left h1 {
+    color: #ff5f00;
+    font-weight: 800;
+    font-size: 34px;
+    font-family: 'Circular Std', sans-serif;
+  }
+  .left p {
+    color: #72726c;
+    padding-top: 5px;
+
+  }
+  .left form {
+    margin-top: 1rem;
+  }
+  .left form button{
+    background-color: #ff5f00;
+    width: 150px;
+    height: 61px;
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    border: none;
+  }
+
+  .left form input {
+    background-color: #fff;
+    width: 340px;
+    height: 55px;
+    font-size: 15px;
+    border-radius: 5px 0 0px 5px;
+  }
+
+  .right {
+    display: flex;
+    margin-left: 345px;
+  }
+
+  .right img {
+    width: 260px;
+  }
+
+
+}
