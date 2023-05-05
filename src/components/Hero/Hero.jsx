@@ -1,4 +1,7 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
+import { Subscribe, reset } from '../../features/subscribe/subscribeSlice'
 import './hero.css'
 
 const Hero = () => {
