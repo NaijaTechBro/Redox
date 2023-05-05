@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import waitlistReducer from '../features/waitlist/waitlistSlice'
+import subscribeReducer from '../features/subscribe/subscribeSlice'
 
 export const store = configureStore({
     reducer: {
-        waitlist: waitlistReducer,
+        subscribe: subscribeReducer,
     },
 })

@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL;
-export const API_URL = `${BACKEND_URL}/api/v1/waitlist`;
+export const API_URL = `${BACKEND_URL}/api/v1/subscriber/create-subscriber`;
 // Subscribe
-const waitlist = async (userData) => {
+const subscribe = async (userData) => {
     const response = await axios.post(API_URL, userData)
     
     if(response.data) {
@@ -13,8 +13,8 @@ const waitlist = async (userData) => {
     return response.data
 }
 
-const authService = {
-        waitlist,
+const subscribeService = {
+        subscribe,
 }
 
-export default authService
+export default subscribeService;
