@@ -28,7 +28,7 @@ function Navbar() {
         </ul>
         <div className="navbar__ctas">
           <a href="#"></a>
-          <a href="#">Subscribe</a>
+          <a href="/">Subscribe</a>
         </div>
         <div className="navbar__toggle">
           {open ? (
@@ -85,7 +85,7 @@ function Navbar() {
         </ul>
         <div className="navbar__mobile__menu__ctas">
           <a href="#"></a>
-          <a href="#">Subscribe</a>
+          <a href="/">Subscribe</a>
         </div>
       </div>
     </div>
