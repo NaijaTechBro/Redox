@@ -1,6 +1,7 @@
 import React from 'react'
 import cancel from '../../assets/cancelicon.png'
 import './modal.css'
+import logo from "../../assets/redoxlogo.png";
 
 import { useState } from 'react'
 
@@ -18,7 +19,7 @@ const Modal = (props) => {
           />
         </div>
         <section id="modal-img-sect">
-          <img href="https://res.cloudinary.com/dkcazf954/image/upload/v1682880617/redox-mockup_foog8w.png" alt="" width={84.55} height={232.29} id="phone2" />
+          <img src={logo} alt="" width="354.55px" id="phone2" />
         </section>
       </div>
       <div id="modal-bottom">
