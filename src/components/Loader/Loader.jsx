@@ -1,8 +1,19 @@
 import React from 'react'
+import { Audio } from 'react-loader-spinner'
 
 const Loader = () => {
   return (
-    <div>Loader</div>
+    <div>
+      <Audio
+        height="80"
+        width="80"
+        radius="9"
+        color="orange"
+        ariaLabel="loading"
+        wrapperStyle
+        wrapperClass
+      />
+    </div>
   )
 }
 
