@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import subscribeReducer from '../features/subscribe/subscribeSlice'
+import newsletterReducer from '../features/newsletter/newsletterSlice'
 
 export const store = configureStore({
     reducer: {
-        subscribe: subscribeReducer,
+        newsletter: newsletterReducer,
     },
 })
