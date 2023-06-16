@@ -1,0 +1,23 @@
+.blog-post {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .blog-post-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .blog-post-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    margin-bottom: 20px;
+  }
+  
+  .blog-post-content {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
