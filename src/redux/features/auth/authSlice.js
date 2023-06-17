@@ -32,8 +32,7 @@ const authSlice = createSlice({
       state.admin.firstName = profile.name;
       state.admin.email = profile.email;
       state.admin.phone = profile.phone;
-      state.admin.bio = profile.bio;
-      state.admin.photo = profile.photo;
+      state.admin.profileImage = profile.profileImage;
     },
   },
 });
