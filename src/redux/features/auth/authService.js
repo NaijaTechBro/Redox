@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const BACKEND_URL = process.env.VITE_APP_BACKEND_URL;
+const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL;
 export const API_URL = `${BACKEND_URL}/api/v1/admin`
 
 export const validateEmail = (email) => {
