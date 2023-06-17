@@ -1,38 +1,77 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { createSuperAdmin, validateEmail } from '../../../redux/features/auth/authService';
-import { useDispatch } from 'react-redux';
-import { SET_LOGIN, SET_NAME } from '../../../redux/features/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { register, RESET } from '../../../redux/features/auth/authSlice';
+import { validateEmail } from '../../../redux/features/auth/authService';
 import Loading from "../../../components/Loader/Loader";
 import '../admin.css';
 
 
 const initialState = {
-  firstName: "",
-  lastName: "",
+  name: "",
   email: "",
   password: "",
   password2: "",
 };
 
 const Register = () => {
+  const [formData, setformData] = useState(initialState);
+  const { name, email, password, password2 } = formData;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
-  const [formData, setformData] = useState(initialState);
-  const { firstName, lastName, email, password, password2 } = formData;
+
+  const {isLoading, isLoggedIn, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  // const [uCase, setUCase] = useState(false);
+  // const [num, setNum] = useState(false);
+  // const [sChar, setSChar] = useState(false);
+  // const [passLength, setPassLength] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setformData({ ...formData, [name]: value });
   };
 
-  const register = async (e) => {
+  // useEffect(() => {
+  //   // Check Lower and Uppercase
+  //   if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
+  //     setUCase(true);
+  //   } else {
+  //     setUCase(false);
+  //   }
+  //   // Check for numbers
+  //   if (password.match(/([0-9])/)) {
+  //     setNum(true);
+  //   } else {
+  //     setNum(false);
+  //   }
+  //   // Check for special character
+  //   if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
+  //     setSChar(true);
+  //   } else {
+  //     setSChar(false);
+  //   }
+  //   // Check for PASSWORD LENGTH
+  //   if (password.length > 5) {
+  //     setPassLength(true);
+  //   } else {
+  //     setPassLength(false);
+  //   }
+  // }, [password]);
+
+
+  const registerUser = async (e) => {
     e.preventDefault();
 
-    if (!firstName || !lastName || !email || !password) {
+    if (!name || !email || !password) {
       return toast.error("All fields are required");
+    }
+    if (password.length < 6) {
+      return toast.error("Password must be up to 6 characters");
     }
     if (!validateEmail(email)) {
       return toast.error("Please enter a valid email");
@@ -43,43 +82,33 @@ const Register = () => {
   
 
   const userData = {
-    firstName,
-    lastName,
+    name,
     email,
     password,
   };
-  setIsLoading(true);
-  try {
-    const data = await createSuperAdmin(userData);
-    await dispatch(SET_LOGIN(true));
-    await dispatch(SET_NAME(data.name));
-    navigate("/admin/dashboard");
-    setIsLoading(false);
-  } catch (error) {
-    setIsLoading(false);
-  }
+
+  await dispatch(register(userData));
 };
+
+  useEffect(() => {
+    if (isSuccess && isLoggedIn) {
+      navigate("/admin/dashboard");
+    }
+
+    dispatch(RESET());
+  }, [isLoggedIn, isSuccess, dispatch, navigate]);
 
   return (
     <div className="register-page">
       {isLoading && <Loading />}
       <h1>Admin Register</h1>
-      <form onSubmit={register}>
+      <form onSubmit={registerUser}>
             <input
               type="text"
-              placeholder="firstName"
+              placeholder="Name"
               required
-              name="firstName"
-              value={firstName}
-              onChange={handleInputChange}
-            />
-
-            <input
-              type="text"
-              placeholder="lastName"
-              required
-              name="lastName"
-              value={lastName}
+              name="name"
+              value={name}
               onChange={handleInputChange}
             />
 
