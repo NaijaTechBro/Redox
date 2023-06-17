@@ -10,6 +10,7 @@ import '../admin.css';
 
 const initialState = {
   firstName: "",
+  lastName: "",
   email: "",
   password: "",
   password2: "",
@@ -20,7 +21,7 @@ const Register = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setformData] = useState(initialState);
-  const { firstName, email, password, password2 } = formData;
+  const { firstName, lastName, email, password, password2 } = formData;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +31,7 @@ const Register = () => {
   const register = async (e) => {
     e.preventDefault();
 
-    if (!firstName || !email || !password) {
+    if (!firstName || !lastName || !email || !password) {
       return toast.error("All fields are required");
     }
     if (!validateEmail(email)) {
@@ -43,6 +44,7 @@ const Register = () => {
 
   const userData = {
     firstName,
+    lastName,
     email,
     password,
   };
@@ -63,14 +65,24 @@ const Register = () => {
       {isLoading && <Loading />}
       <h1>Admin Register</h1>
       <form onSubmit={register}>
-      <input
+            <input
               type="text"
-              placeholder="Name"
+              placeholder="firstName"
               required
               name="firstName"
               value={firstName}
               onChange={handleInputChange}
             />
+
+            <input
+              type="text"
+              placeholder="lastName"
+              required
+              name="lastName"
+              value={lastName}
+              onChange={handleInputChange}
+            />
+
             <input
               type="email"
               placeholder="Email"
@@ -79,6 +91,7 @@ const Register = () => {
               value={email}
               onChange={handleInputChange}
             />
+
             <input
               type="password"
               placeholder="Password"
@@ -87,6 +100,7 @@ const Register = () => {
               value={password}
               onChange={handleInputChange}
             />
+
             <input
               type="password"
               placeholder="Confirm Password"
