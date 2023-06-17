@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
-import { Newsletter, reset } from '../../features/newsletter/newsletterSlice'
+import { Newsletter, reset } from '../../redux/features/newsletter/newsletterSlice'
 import './hero.css'
 import Loading from '../Loader/Loader'
 import Modal from '../Modal/Modal'
@@ -32,12 +32,13 @@ const Hero = () => {
     await dispatch(reset())
   }
 
-  if (isLoading) {
-    return <Loading />
-  }
+  // if (isLoading) {
+  //   return <Loading />
+  // }
 
   return (
     <div className="section">
+      {isLoading && <Loading />}
       <div className="left">
         <h1>Get Smarter with Financial Education</h1>
           <p>
