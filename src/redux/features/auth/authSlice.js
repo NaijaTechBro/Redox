@@ -2,17 +2,17 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 // Admin
-const name = JSON.parse(localStorage.getItem("name"));
+const firstName = JSON.parse(localStorage.getItem("firstName"));
 
 const initialState = {
   isLoggedIn: false,
-  name: name ? name : "",
-  user: {
-    name: "",
+  firstName: firstName ? firstName : "",
+  admin: {
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
-    bio: "",
-    photo: "",
+    profileImage: ""
   },
 };
 
@@ -27,21 +27,21 @@ const authSlice = createSlice({
       localStorage.setItem("name", JSON.stringify(action.payload));
       state.name = action.payload;
     },
-    SET_USER(state, action) {
+    SET_ADMIN(state, action) {
       const profile = action.payload;
-      state.user.name = profile.name;
-      state.user.email = profile.email;
-      state.user.phone = profile.phone;
-      state.user.bio = profile.bio;
-      state.user.photo = profile.photo;
+      state.admin.firstName = profile.name;
+      state.admin.email = profile.email;
+      state.admin.phone = profile.phone;
+      state.admin.bio = profile.bio;
+      state.admin.photo = profile.photo;
     },
   },
 });
 
-export const { SET_LOGIN, SET_NAME, SET_USER } = authSlice.actions;
+export const { SET_LOGIN, SET_NAME, SET_ADMIN } = authSlice.actions;
 
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 export const selectName = (state) => state.auth.name;
-export const selectUser = (state) => state.auth.user;
+export const selectAdmin = (state) => state.auth.admin;
 
 export default authSlice.reducer;
