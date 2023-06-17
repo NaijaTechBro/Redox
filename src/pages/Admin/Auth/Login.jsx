@@ -1,34 +1,76 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Loader from '../../../components/Loader/Loader';
+import { validateEmail } from '../../../redux/features/auth/authService';
+import {
+  login,
+  RESET
+} from '../../../redux/features/auth/authSlice'
 import '../admin.css';
 
-function Login() {
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
+const initialState = {
+  email: "",
+  password: "",
+};
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
+const Login = () => {
+  const [formData, setformData] = useState(initialState);
+  const { email, password } = formData;
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setformData({ ...formData, [name]: value });
+  };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { isLoading, isLoggedIn, isSuccess, message, isError, twoFactor } = 
+  useSelector((state) => state.auth);
+  
+  const loginUser = async (e) => {
+    e.preventDefault();
+
+    if (!email || !password) {
+      return toast.error("All fields are required");
+    }
+
+    if (!validateEmail(email)) {
+      return toast.error("Please enter a valid email");
+    }
+
+    const userData = {
+      email,
+      password,
+    };
+
+    await dispatch(login(userData));
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  useEffect(() => {
+    if (isSuccess && isLoggedIn) {
+      navigate("/admin/dashboard");
+    }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Add code to submit form data to server or validate input fields
-  };
+    if (isError && twoFactor) {
+      navigate("/admin/home");
+    }
+
+    dispatch(RESET());
+  }, [isLoggedIn, isSuccess, dispatch, navigate, isError, twoFactor])
 
   return (
     <div className="login-page">
+      {isLoading && <Loader />}
       <h1>Admin Login</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={loginUser}>
         <label htmlFor="name">Name:</label>
         <input
           type="text"
           id="name"
           value={name}
-          onChange={handleNameChange}
+          onChange={handleInputChange}
         />
 
         <label htmlFor="password">Password:</label>
@@ -36,7 +78,7 @@ function Login() {
           type="password"
           id="password"
           value={password}
-          onChange={handlePasswordChange}
+          onChange={handleInputChange}
         />
          <p>Don't Have an Account? <Link to='/admin/register'>Register</Link></p>
          <p>Or <Link to='/admin/forgot-pass'>Forgot Password</Link></p>
