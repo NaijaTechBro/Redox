@@ -1,57 +1,101 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import { createSuperAdmin, validateEmail } from '../../../redux/features/auth/authService';
+import { useDispatch } from 'react-redux';
+import { SET_LOGIN, SET_NAME } from '../../../redux/features/auth/authSlice';
+import Loading from "../../../components/Loader/Loader";
 import '../admin.css';
 
-function Register() {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+const initialState = {
+  firstName: "",
+  email: "",
+  password: "",
+  password2: "",
+};
+
+const Register = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setformData] = useState(initialState);
+  const { firstName, email, password, password2 } = formData;
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setformData({ ...formData, [name]: value });
   };
 
-  const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
-  };
+  const register = async (e) => {
+    e.preventDefault();
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+    if (!firstName || !email || !password) {
+      return toast.error("All fields are required");
+    }
+    if (!validateEmail(email)) {
+      return toast.error("Please enter a valid email");
+    };
+    if (password !== password2) {
+      return toast.error("Passwords do not match");
+    }
+  
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Add code to submit form data to server or validate input fields
+  const userData = {
+    firstName,
+    email,
+    password,
   };
+  setIsLoading(true);
+  try {
+    const data = await createSuperAdmin(userData);
+    await dispatch(SET_LOGIN(true));
+    await dispatch(SET_NAME(data.name));
+    navigate("/admin/dashboard");
+    setIsLoading(false);
+  } catch (error) {
+    setIsLoading(false);
+  }
+};
 
   return (
     <div className="register-page">
+      {isLoading && <Loading />}
       <h1>Admin Register</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="text"
-          id="email"
-          value={email}
-          onChange={handleEmailChange}
-        />
+      <form onSubmit={register}>
+      <input
+              type="text"
+              placeholder="Name"
+              required
+              name="firstName"
+              value={firstName}
+              onChange={handleInputChange}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              required
+              name="email"
+              value={email}
+              onChange={handleInputChange}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              required
+              name="password"
+              value={password}
+              onChange={handleInputChange}
+            />
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              required
+              name="password2"
+              value={password2}
+              onChange={handleInputChange}
+            />
 
-
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={handleUsernameChange}
-        />
-
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={handlePasswordChange}
-        />
         <p>Already Have an Account? <Link to='/admin/login'>Login</Link></p>
         <p>Or <Link to='/admin/home'>Home</Link></p>
 
