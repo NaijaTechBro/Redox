@@ -1,20 +1,24 @@
-import React from 'react'
-import { Audio } from 'react-loader-spinner'
+import React from "react";
+import loaderImg from "../../assets/loader.gif";
+import "./Loader.scss";
 
 const Loader = () => {
   return (
-    <div>
-      <Audio
-        height="80"
-        width="80"
-        radius="9"
-        color="orange"
-        ariaLabel="loading"
-        wrapperStyle
-        wrapperClass
-      />
-    </div>
-  )
-}
+    <div className="wrapper">
+      <div className="loader">
+        <img src={loaderImg} alt="Loading..." />
+      </div>
+    </div>,
+    document.getElementById("loader")
+  );
+};
 
-export default Loader
+export const SpinnerImg = () => {
+  return (
+    <div className="--center-all">
+      <img src={loaderImg} alt="Loading..." />
+    </div>
+  );
+};
+
+export default Loader;
