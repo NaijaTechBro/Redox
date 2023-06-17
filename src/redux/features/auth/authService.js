@@ -1,7 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const BACKEND_URL = process.env.VITE_APP_BACKEND_URL;
+const BACKEND_URL = process.env.VITE_APP_BACKEND_URL;
+export const API_URL = `${BACKEND_URL}/api/v1/admin`
 
 export const validateEmail = (email) => {
   return email.match(
@@ -9,16 +10,19 @@ export const validateEmail = (email) => {
   );
 };
 
-// Register User
-export const registerUser = async (userData) => {
+// Role = Admin
+
+
+// Register Admin
+export const createSuperAdmin = async (userData) => {
   try {
     const response = await axios.post(
-      `${BACKEND_URL}/api/users/register`,
+      `${API_URL}/create`,
       userData,
       { withCredentials: true }
     );
     if (response.statusText === "OK") {
-      toast.success("User Registered successfully");
+      toast.success("SuperAdmin Created successfully");
     }
     return response.data;
   } catch (error) {
@@ -30,11 +34,52 @@ export const registerUser = async (userData) => {
   }
 };
 
-// Login User
-export const loginUser = async (userData) => {
+// Verify Email
+export const verifyEmail = async (userData, verification_token) => {
+  try {
+    const response = await axios.get(
+      `${API_URL}/email/verify/${verification_token}`,
+      userData
+    );
+    if (response.statusText === "OK") {
+      toast.success("Email Verification Link Sent");
+    }
+    return response.data;
+  } catch (error) {
+    const message = 
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+// Resend Email Verification
+export const resendEmailVerification = async (userData) => {
+  try {
+    const response = await axios.put(
+      `${API_URL}/email/verify/resend`,
+      userData
+    );
+    if (response.statusText === "OK") {
+      toast.success("Email Verification Link Has Been Resent Successfully!!!");
+    }
+    return response.data;
+  } catch (error) {
+    const message = 
+    (error.response && error.response.data && error.response.data.message) ||
+    error.message ||
+    error.toString();
+  toast.error(message);
+    
+  }
+};
+
+// Login Admin
+export const login = async (userData) => {
   try {
     const response = await axios.post(
-      `${BACKEND_URL}/api/users/login`,
+      `${API_URL}/login`,
       userData
     );
     if (response.statusText === "OK") {
@@ -53,7 +98,7 @@ export const loginUser = async (userData) => {
 // Logout User
 export const logoutUser = async () => {
   try {
-    await axios.get(`${BACKEND_URL}/api/users/logout`);
+    await axios.get(`${API_URL}/logout`);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -67,7 +112,7 @@ export const logoutUser = async () => {
 export const forgotPassword = async (userData) => {
   try {
     const response = await axios.post(
-      `${BACKEND_URL}/api/users/forgotpassword`,
+      `${API_URL}/forgotpassword`,
       userData
     );
     toast.success(response.data.message);
@@ -84,7 +129,7 @@ export const forgotPassword = async (userData) => {
 export const resetPassword = async (userData, resetToken) => {
   try {
     const response = await axios.put(
-      `${BACKEND_URL}/api/users/resetpassword/${resetToken}`,
+      `${API_URL}/resetpassword/${resetToken}`,
       userData
     );
     return response.data;
@@ -100,7 +145,7 @@ export const resetPassword = async (userData, resetToken) => {
 // Get Login Status
 export const getLoginStatus = async () => {
   try {
-    const response = await axios.get(`${BACKEND_URL}/api/users/loggedin`);
+    const response = await axios.get(`${API_URL}/loggedIn`);
     return response.data;
   } catch (error) {
     const message =
@@ -110,40 +155,12 @@ export const getLoginStatus = async () => {
     toast.error(message);
   }
 };
-// Get User Profile
-export const getUser = async () => {
-  try {
-    const response = await axios.get(`${BACKEND_URL}/api/users/getuser`);
-    return response.data;
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    toast.error(message);
-  }
-};
-// Update Profile
-export const updateUser = async (formData) => {
-  try {
-    const response = await axios.patch(
-      `${BACKEND_URL}/api/users/updateuser`,
-      formData
-    );
-    return response.data;
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
-    toast.error(message);
-  }
-};
+
 // Update Profile
 export const changePassword = async (formData) => {
   try {
     const response = await axios.patch(
-      `${BACKEND_URL}/api/users/changepassword`,
+      `${API_URL}/updatepassword`,
       formData
     );
     return response.data;
@@ -155,3 +172,38 @@ export const changePassword = async (formData) => {
     toast.error(message);
   }
 };
+
+// Get User Profile
+export const getAdminProfile = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/profile`);
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+// Update Profile
+export const updateUser = async (formData) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/updateuser`,
+      formData
+    );
+    return response.data;
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    toast.error(message);
+  }
+};
+
+
+
+// Role = User
