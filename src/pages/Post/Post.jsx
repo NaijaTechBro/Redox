@@ -4,15 +4,14 @@ import './post.css'
 const Post = () => {
   return (
     <div className="post">
-      <img src="https://www.thedefiedge.com/content/images/size/w960/2023/04/Frame-17-1.png" alt="" />
+      <img src="https://substack-post-media.s3.amazonaws.com/public/images/1c63571b-246b-49f9-834f-afd4f9d709ab_512x512" alt="" />
       <div className="texts">
-    <h2>The rise of a new meme coin</h2>
+    <h2>"Nigeria's Youth Confront Growing Housing Crisis: Challenges and Solutions"</h2>
     <p className="info">
         <a className="author">Sodiq Baki</a>
-        <time>2023-04-27 7:09  |  11 min read</time>
+        <time>2023-05-07 5:09  |  10 min read</time>
     </p>
-    <p className='summary'>On April 18th, Gary Gensler testified before the House Financial Services Committee. And Crypto Twitter had a field day.
-        Who is Gary Gensler? The SEC’s current chairman.  🤔</p>
+    <p className='summary'>As Nigeria's youthful population continues to expand, a pressing issue looms large on the horizon: the growing housing crisis faced by the country's young people. With limited access  🤔</p>
     </div>
       </div>
   )
