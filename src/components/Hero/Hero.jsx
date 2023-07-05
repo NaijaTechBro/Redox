@@ -41,8 +41,7 @@ const Hero = () => {
       {isLoading && <Loading />}
       <div className="left">
         <h1>Get Smarter with Financial Education</h1>
-          <p>
-            Get Weekly News, Insights and Research about Crypto, Economy and Financial knowledge.
+          <p>We provide Market Intelligence, Research and analysis on the Future of money and the economy in Africa.
           </p>
                 <form onSubmit={header}>
                   <input
