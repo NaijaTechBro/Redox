@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../admin.css';
 
-function ResetPass() {
+const ResetPassword = () => {
   const [password, setPassword] = useState('');
   const [cpassword, setCpassword] = useState('');
   
@@ -44,4 +44,4 @@ function ResetPass() {
   );
 }
 
-export default ResetPass;
+export default ResetPassword;
