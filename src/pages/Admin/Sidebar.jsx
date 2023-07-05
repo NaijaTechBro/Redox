@@ -43,6 +43,10 @@ const Sidebar = () => {
                 <i className="list-item-icon fas fa-users"></i>
                 <Link to='/admin/settings'><span className="list-item-text">Settings</span></Link>
             </li>
+            <li className="list-item">
+                <i className="list-item-icon fas fa-users"></i>
+                <Link to='/admin/settings'><span className="list-item-text">Logout</span></Link>
+            </li>
         </ul>
     </div>
 </div>
