@@ -13,8 +13,6 @@ const Blog = () => {
       <h3>Crypto News</h3>
     </div>
     <a href='/'><Post /></a>
-    <a href='/'><Post /></a>
-    <a href='/'><Post /></a>
     <div className="link">
     <Link to='/'><button>Read More</button></Link>
     </div>
