@@ -13,7 +13,7 @@ const Home = () => {
       <div className="latest">
         <h4><u>Read Our Lastest</u> </h4>
       </div>
-        <a href='https://insideredox.substack.com/p/nigerias-youth-confront-growing-housing?sd=pf'><Post /></a>
+        <Post />
         <Footer />
       </>
   )
