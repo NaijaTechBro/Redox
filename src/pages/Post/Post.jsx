@@ -1,6 +1,5 @@
 import React from 'react';
 import PostCard from './component/card'
-import Logo from '../../assets/redoxlogo.png'
 
 const Post = () => {
   return (
