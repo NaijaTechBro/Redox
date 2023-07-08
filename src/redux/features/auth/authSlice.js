@@ -69,7 +69,7 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 
 // resetPassword
 export const resetPassword = createAsyncThunk(
-  "auth/resetPassword",
+  "auth/reset",
   async ({ userData, resetToken }, thunkAPI) => {
     try {
       return await authService.resetPassword(userData, resetToken);
