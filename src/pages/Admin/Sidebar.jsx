@@ -2,21 +2,26 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { logout, RESET } from '../../redux/features/auth/authSlice';
+import './admin.css'
 
 const Sidebar = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
- 
+    const goHome = () => {
+        navigate("/admin/home")
+    };
 
     const logoutUser = () => {
         dispatch(RESET());
         dispatch(logout());
-        navigate("/admin/home");
+        navigate("/admin/login");
       };
 
 
   return (
     <div className="sidebar">
-    <div className="sidebar-top">
+    <div className="sidebar-top"onClick={goHome}>
         <i className="logo fab fa-sketch"></i>
         <Link to='/admin/home'><img src='https://res.cloudinary.com/dkcazf954/image/upload/v1682628918/redoxlogo_1_cfljyp.png' alt='redox-logo' /></Link>
     </div>
@@ -24,7 +29,7 @@ const Sidebar = () => {
         <ul className="list">
             <li className="list-item active">
                 <i className="list-item-icon fas fa-home"></i>
-                <Link to='/admin/home'><span className="list-item-text">Dashboard</span></Link>
+                <Link to='/admin/dashboard'><span className="list-item-text">Dashboard</span></Link>
             </li>
             <li className="list-item">
                 <i className="list-item-icon fas fa-search"></i>
@@ -52,7 +57,7 @@ const Sidebar = () => {
             </li>
             <li className="list-item">
                 <i className="list-item-icon fas fa-users"></i>
-                <Link onClick={logoutUser}><span className="list-item-text">Logout</span></Link>
+                <button className='sidebar-button' onClick={logoutUser}><span className="list-item-text">Logout</span></button>
             </li>
         </ul>
     </div>
