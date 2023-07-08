@@ -183,6 +183,11 @@
     padding: 10px 0;
     margin-bottom: 10px;
   }
+
+  .sidebar-button {
+    background-color: #111827;
+    border: none;
+  }
   
   .sidebar-center {
     padding: 0;
