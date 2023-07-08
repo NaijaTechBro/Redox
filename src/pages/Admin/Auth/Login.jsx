@@ -58,25 +58,28 @@ const Login = () => {
     }
 
     dispatch(RESET());
-  }, [isLoggedIn, isSuccess, dispatch, navigate, isError, twoFactor])
+  }, [isLoggedIn, isSuccess, dispatch, email, navigate, isError, twoFactor])
 
   return (
     <div className="login-page">
       {isLoading && <Loader />}
       <h1>Admin Login</h1>
       <form onSubmit={loginUser}>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="email">Email</label>
         <input
-          type="text"
-          id="name"
-          value={name}
+          type="email"
+          placeholder='Email'
+          required
+          name='email'
+          value={email}
           onChange={handleInputChange}
         />
 
         <label htmlFor="password">Password:</label>
         <input
+        placeholder='Password'
+        name='password'
           type="password"
-          id="password"
           value={password}
           onChange={handleInputChange}
         />
