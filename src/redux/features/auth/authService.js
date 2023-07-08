@@ -17,21 +17,6 @@ const register = async (userData) => {
   return response.data;
 };
 
-// Verify User
-const verifyUser = async (verification_token) => {
-  const response = await axios.patch(
-    `${API_URL}email/verify/${verification_token}`,
-  );
-
-  return response.data.message;
-};
-
-// Send Verification Email
-const resendEmailVerification = async () => {
-  const response = await axios.post(API_URL + "email/verify/resend");
-  return response.data.message;
-};
-
 // Login User
 const login = async (userData) => {
   const response = await axios.post(API_URL + "login", userData);
@@ -67,23 +52,7 @@ const getLoginStatus = async () => {
   return response.data;
 };
 
-// Change Password
-const changePassword = async (userData) => {
-  const response = await axios.patch(API_URL + "updatePassword", userData);
 
-  return response.data.message;
-};
-// Get Admin profile
-const getAdmin = async () => {
-  const response = await axios.get(API_URL + "profile");
-  return response.data;
-};
-
-// Update profile
-const updateUser = async (userData) => {
-  const response = await axios.patch(API_URL + "updateUser", userData);
-  return response.data;
-};
 
 
 
@@ -92,13 +61,8 @@ const authService = {
  login,
  logout,
  getLoginStatus,
- getAdmin,
- updateUser,
  forgotPassword,
  resetPassword,
- changePassword,
- resendEmailVerification,
- verifyUser,
 };
 
 export default authService;
