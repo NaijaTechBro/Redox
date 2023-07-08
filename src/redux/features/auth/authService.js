@@ -19,13 +19,13 @@ const register = async (userData) => {
 
 // Login User
 const login = async (userData) => {
-  const response = await axios.post(API_URL + "login", userData);
+  const response = await axios.post(`${API_URL}login`, userData);
   return response.data;
 };
 
 // Logout User
 const logout = async () => {
-  const response = await axios.get(API_URL + "logout");
+  const response = await axios.get(`${API_URL}logout`);
   return response.data.message;
 };
 
@@ -41,7 +41,7 @@ const resetPassword = async (userData, resetToken) => {
 
 // fORGOT Password
 const forgotPassword = async (userData) => {
-  const response = await axios.post(API_URL + "forgotPassword", userData);
+  const response = await axios.post(`${API_URL}forgotPassword`, userData);
 
   return response.data.message;
 };
