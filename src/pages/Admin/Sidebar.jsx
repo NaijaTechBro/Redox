@@ -1,12 +1,19 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { logout, RESET } from '../../redux/features/auth/authSlice';
 
 const Sidebar = () => {
-    const [selectedValue, setSelectedValue] = useState('');
 
-    const handleSelectChange = (event) => {
-        setSelectedValue(event.target.value);
-    }
+ 
+
+    const logoutUser = () => {
+        dispatch(RESET());
+        dispatch(logout());
+        navigate("/admin/home");
+      };
+
+
   return (
     <div className="sidebar">
     <div className="sidebar-top">
@@ -45,7 +52,7 @@ const Sidebar = () => {
             </li>
             <li className="list-item">
                 <i className="list-item-icon fas fa-users"></i>
-                <Link to='/admin/settings'><span className="list-item-text">Logout</span></Link>
+                <Link onClick={logoutUser}><span className="list-item-text">Logout</span></Link>
             </li>
         </ul>
     </div>
