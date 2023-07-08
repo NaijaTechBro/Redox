@@ -139,7 +139,7 @@ export const forgotPassword = createAsyncThunk(
 
 // Get Login Status
 export const getLoginStatus = createAsyncThunk(
-  "auth/getLoginStatus",
+  "auth/loginStatus",
   async (_, thunkAPI) => {
     try {
       return await authService.getLoginStatus();
@@ -319,13 +319,11 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.isLoggedIn = action.payload;
-        console.log(action.payload);
       })
       .addCase(getLoginStatus.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-        console.log(action.payload);
       })
 
       // Get User
