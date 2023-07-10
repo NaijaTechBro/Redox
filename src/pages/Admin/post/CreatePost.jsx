@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { createPost, reset } from '../../../redux/features/post/postsSlice';
+import { 
+      createPost,
+      selectIsLoading
+} from '../../../redux/features/post/postsSlice';
 import Loading from '../../../components/Loader/Loader';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
-import './createpost.css';
 import PostForm from '../../Post/component/PostForm';
-
+import './createpost.css'
 
 const initialState = {
   title: "",
@@ -27,11 +25,7 @@ const Write = () => {
   const [imagePreview, setImagePreview]= useState('');
   const [content, setContent] = useState('')
 
-
-
-  const { isSuccess, isLoading, isLoggedIn, message, isError, twoFactor } = useSelector(
-    (state) => state.posts
-    );
+  const isLoading = useSelector(selectIsLoading);
 
 const { title, summary, category } = post;
 
@@ -46,15 +40,25 @@ const handleInputChange = (e) => {
     setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
 
+  
+  const generateKSKU = (category) => {
+    const letter = category.slice(0, 3).toUpperCase();
+    const number = Date.now();
+    const sku = letter + "-" + number;
+    return sku;
+  };
 
   const savePost = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
+    formData.append("sku", generateKSKU(category));
     formData.append("summary", summary);
     formData.append("category", category);
     formData.append("content", content);
     formData.append("image", postImage);
+
+    console.log(...formData);
 
     await dispatch(createPost(formData));
 
