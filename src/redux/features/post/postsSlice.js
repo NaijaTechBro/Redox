@@ -10,6 +10,7 @@ const initialState = {
     isLoading: false,
     isSuccess: false,
     message: "",
+    category: []
   };
 
 
@@ -17,9 +18,9 @@ const initialState = {
 // Create Post
 export const createPost = createAsyncThunk(
     'posts/createPost',
-     async (post, thunkAPI) => {
+     async (formData, thunkAPI) => {
         try {
-            return await postService.createPost(post);
+            return await postService.createPost(formData);
         } catch (error) {
             const message = 
             (error.response &&
@@ -34,7 +35,7 @@ export const createPost = createAsyncThunk(
 
 // ACTIONS
 const postsSlice = createSlice({
-  name: 'posts',
+  name: 'post',
   initialState,
   reducers: {
     reset: (state) => {
