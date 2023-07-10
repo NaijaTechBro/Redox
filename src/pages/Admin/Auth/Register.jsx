@@ -92,7 +92,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isSuccess && isLoggedIn) {
-      navigate("/admin/dashboard");
+      navigate("/admin/login");
     }
 
     dispatch(RESET());
