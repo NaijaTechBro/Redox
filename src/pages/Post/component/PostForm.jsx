@@ -1,7 +1,6 @@
 import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import Card from "./postCard";
 
 import "../post.css";
 
@@ -18,25 +17,6 @@ const PostForm = ({
   return (
     <div className="create">
         <form className="form-group" onSubmit={savePost}>
-          {/* <Card cardClass={"group"}>
-            <label>Post Image</label>
-            <code className="--color-dark">
-              Supported Formats: jpg, jpeg, png
-            </code>
-            <input
-              type="file"
-              name="image"
-              onChange={(e) => handleImageChange(e)}
-            />
-
-            {imagePreview != null ? (
-              <div className="image-preview">
-                <img src={imagePreview} alt="post" />
-              </div>
-            ) : (
-              <p>No image set for this poduct.</p>
-            )}
-          </Card> */}
           <div className="form-group">
           <label htmlFor="title">Title:</label>
         <input
