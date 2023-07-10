@@ -4,7 +4,6 @@ import postService from '../post/postService';
 
 
 const initialState = {
-    isLoggedIn: true,
     post: null,
     posts: [],
     isError: false,
