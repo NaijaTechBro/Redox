@@ -11,7 +11,7 @@ import Fresources from './components/Fresources/Fresources';
 import Blog from './pages/Blog/Blog';
 import Footer from './components/Footer/Footer';
 //Admin
-import CreatePost from './pages/Admin/post/CreatePost';
+import Write from './pages/Admin/post/CreatePost';
 import Register from './pages/Admin/Auth/Register';
 import Admin from './pages/Admin/Admin';
 import Login from './pages/Admin/Auth/Login';
@@ -41,7 +41,7 @@ function App() {
             <Route path='/*' element={<Home />} />            
             {/* <Route path='/' /> */}
                         {/* Admin */}
-            <Route path='/admin/create-post' element={<CreatePost />} />
+            <Route path='/admin/create-post' element={<Write />} />
             <Route path='/admin/login' element={<Login />} />
             <Route path='/admin/register' element={<Register />} />
             <Route path='/admin/home' element={<Admin />} />
