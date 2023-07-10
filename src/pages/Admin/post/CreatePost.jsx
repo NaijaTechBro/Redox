@@ -1,84 +1,83 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createPost, reset } from '../../../redux/features/post/postsSlice';
+import Loading from '../../../components/Loader/Loader';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import './createpost.css';
+import PostForm from '../../Post/component/PostForm';
 
-function CreatePost() {
-  const [title, setTitle] = useState('');
-  const [summary, setSummary] = useState('');
-  const [image, setImage] = useState(null);
-  const [category, setCategory]= useState('');
-  const [content, setContent] = useState('');
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value);
-  };
+const initialState = {
+  title: "",
+  summary: "",
+  category: "",
+  content: "",
+};
 
-  const handleSummaryChange = (event) => {
-    setSummary(event.target.value);
-  };
+
+const Write = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [post, setPost] = useState(initialState);
+  const [postImage, setPostImage] = useState(null);
+  const [imagePreview, setImagePreview]= useState('');
+  const [content, setContent] = useState('')
+
+
+
+  const { isSuccess, isLoading, isLoggedIn, message, isError, twoFactor } = useSelector(
+    (state) => state.posts
+    );
+
+const { title, summary, category } = post;
+
+
+const handleInputChange = (e) => {
+  const { name, value } = e.target;
+  setPost({ ...post, [name]: value })
+}
 
   const handleImageChange = (event) => {
-    setImage(event.target.files[0]);
+    setPostImage(event.target.files[0]);
+    setImagePreview(URL.createObjectURL(e.target.files[0]));
   };
 
-  const handleContentChange = (value) => {
-    setContent(value);
-  };
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  }
+  const savePost = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("summary", summary);
+    formData.append("category", category);
+    formData.append("content", content);
+    formData.append("image", postImage);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // send blog post data to server
+    await dispatch(createPost(formData));
+
+    navigate("/admin/dashboard")
   };
 
   return (
-    <div className='create'>
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={handleTitleChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="summary">Summary:</label>
-        <textarea
-          id="summary"
-          value={summary}
-          onChange={handleSummaryChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="category">Category:</label>
-        <textarea
-          id="category"
-          value={category}
-          onChange={handleCategoryChange}
-          required
-        />
-      </div>
-      <div className="form-group">
-        <label htmlFor="image">Image:</label>
-        <input type="file" id="image" onChange={handleImageChange} required />
-      </div>
-      <div className="form-group">
-        <label htmlFor="content">Content:</label>
-        <ReactQuill value={content} onChange={handleContentChange} />
-      </div>
-      <button type="submit">Submit</button>
-    </form>
+    <div>
+      {isLoading && <Loading />}
+      <h3>Write a Blog Post</h3>
+      <PostForm
+      post={post}
+      postImage={postImage}
+      imagePreview={imagePreview}
+      content={content}
+      setContent={setContent}
+      handleInputChange={handleInputChange}
+      handleImageChange={handleImageChange}
+      savePost={savePost}
+      />
     </div>
 
   );
 }
 
-export default CreatePost;
+export default Write;
