@@ -6,7 +6,7 @@ import './admin.css'
 const Dashboard = () => {
   return (
     <>
-    <div className="container">
+    <div className="dashboard_container">
     <Sidebar />
     <Main />
     </div>
