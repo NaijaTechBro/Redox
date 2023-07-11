@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { getLoginStatus } from './redux/features/auth/authService';
+import { SET_LOGIN } from './redux/features/auth/authSlice';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,7 +30,18 @@ import Profile from './pages/Admin/Profile';
 import Settings from './pages/Admin/Settings';
 
 
+axios.defaults.withCredentials = true;
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    async function loginStatus() {
+      const status = await getLoginStatus();
+      dispatch(SET_LOGIN(status));
+    }
+    loginStatus();
+  }, [dispatch]);
 
   return (
     <>
@@ -47,15 +62,15 @@ function App() {
             <Route path='/admin/home' element={<Admin />} />
             <Route path='/admin/dashboard' element={<Dashboard />} />
             <Route path='/admin/forgot-pass' element={<ForgotPass />} />
-            <Route path='/admin/reset-pass' element={<ResetPass />} />
+            <Route path='/admin/reset-pass/:resetToken' element={<ResetPass />} />
             <Route path='/admin/change-pass' element={<ChangePass />} />
             <Route path='/admin/manage' element={<ManageAdmin />} />
             <Route path='/admin/send-mail' element={<Sendmail />} />
             <Route path='/admin/users' element={<Users />} />
             <Route path='/admin/settings' element={<Settings />} />
             <Route path='/admin/profile' element={<Profile />} />
-         
-         </Routes>
+        
+        </Routes>
         </BrowserRouter>
       <ToastContainer />
     </>
