@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
-import { logout, RESET } from '../../redux/features/auth/authSlice';
+import { logoutUser } from '../../redux/features/auth/authService';
 import './admin.css'
 
 const Sidebar = () => {
@@ -18,7 +18,6 @@ const Sidebar = () => {
     };
     
     const logoutUser = () => {
-        dispatch(RESET());
         dispatch(logout());
         navigate("/admin/login");
     };
