@@ -1,8 +1,22 @@
 import React from "react";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
+import { SketchPicker } from 'react-color';
 import "react-quill/dist/quill.snow.css";
 
 import "../post.css";
+
+const Divider = Quill.import('blots/block');
+Divider.tagName = 'hr';
+Quill.register(Divider);
+
+const ColorPicker = Quill.import('ui/color-picker');
+class CustomColorPicker extends ColorPicker {
+  constructor(options) {
+    super(options);
+    this.container.classList.add('custom-color-picker');
+  }
+}
+Quill.register(CustomColorPicker, true);
 
 const PostForm = ({
   post,
@@ -57,6 +71,13 @@ const PostForm = ({
         onChange={setContent}
         modules={PostForm.modules}
         formats={PostForm.formats}
+        placeholder="Write a blog today..."
+        bounds=".custom-color-picker"
+        style={{ zIndex: '9999' }}
+        components={{
+          ColorPicker: CustomColorPicker,
+        }}
+        renderColorPicker={(props) => <SketchPicker {...props} />}
         />
       </div>
       <button type="submit" >Create Post</button>
@@ -69,9 +90,12 @@ PostForm.modules = {
   toolbar: [
     [{ header: "1" }, { header: "2" }, { font: [] }],
     [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
+    ["bold", "italic", "underline", "strike", "divier", "blockquote"],
+    ['link', 'image', 'video'],
+    ['blockquote', 'code-block'],
     [{ align: [] }],
     [{ color: [] }, { background: [] }],
+    [{ script: 'sub' }, { script: 'super' }],
     [
       { list: "ordered" },
       { list: "bullet" },
@@ -97,6 +121,7 @@ PostForm.formats = [
   "indent",
   "link",
   "video",
+  "divider",
   "image",
   "code-block",
   "align",
