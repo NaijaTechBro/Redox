@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { useDispatch, useSelector } from 'react-redux';
-import { register, RESET } from '../../../redux/features/auth/authSlice';
-import { validateEmail } from '../../../redux/features/auth/authService';
+import { useDispatch } from 'react-redux';
+import { SET_LOGIN, SET_NAME } from '../../../redux/features/auth/authSlice';
+import { validateEmail, registerUser } from '../../../redux/features/auth/authService';
 import Loading from "../../../components/Loader/Loader";
 import '../admin.css';
 
@@ -18,53 +18,18 @@ const initialState = {
 const Register = () => {
   const [formData, setformData] = useState(initialState);
   const { name, email, password, password2 } = formData;
+  const [isLoading, setIsLoading ] = useState(false)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const {isLoading, isLoggedIn, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
-
-  // const [uCase, setUCase] = useState(false);
-  // const [num, setNum] = useState(false);
-  // const [sChar, setSChar] = useState(false);
-  // const [passLength, setPassLength] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setformData({ ...formData, [name]: value });
   };
 
-  // useEffect(() => {
-  //   // Check Lower and Uppercase
-  //   if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) {
-  //     setUCase(true);
-  //   } else {
-  //     setUCase(false);
-  //   }
-  //   // Check for numbers
-  //   if (password.match(/([0-9])/)) {
-  //     setNum(true);
-  //   } else {
-  //     setNum(false);
-  //   }
-  //   // Check for special character
-  //   if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
-  //     setSChar(true);
-  //   } else {
-  //     setSChar(false);
-  //   }
-  //   // Check for PASSWORD LENGTH
-  //   if (password.length > 5) {
-  //     setPassLength(true);
-  //   } else {
-  //     setPassLength(false);
-  //   }
-  // }, [password]);
 
-
-  const registerUser = async (e) => {
+  const register = async (e) => {
     e.preventDefault();
 
     if (!name || !email || !password) {
@@ -80,29 +45,29 @@ const Register = () => {
       return toast.error("Passwords do not match");
     }
   
-
-  const userData = {
-    name,
-    email,
-    password,
-  };
-
-  await dispatch(register(userData));
-};
-
-  useEffect(() => {
-    if (isSuccess && isLoggedIn) {
-      navigate("/admin/login");
+    const userData = {
+      name,
+      email,
+      password,
+    };
+    setIsLoading(true);
+    try {
+      const data = await registerUser(userData);
+      // console.log(data);
+      await dispatch(SET_LOGIN(true));
+      await dispatch(SET_NAME(data.name));
+      navigate("/admin/dashboard");
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
     }
-
-    dispatch(RESET());
-  }, [isLoggedIn, isSuccess, dispatch, navigate]);
+  };
 
   return (
     <div className="register-page">
       {isLoading && <Loading />}
       <h1>Admin Register</h1>
-      <form onSubmit={registerUser}>
+      <form onSubmit={register}>
             <input
               type="text"
               placeholder="Name"
