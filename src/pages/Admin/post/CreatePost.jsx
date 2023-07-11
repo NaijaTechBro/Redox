@@ -7,6 +7,7 @@ import {
 } from '../../../redux/features/post/postsSlice';
 import Loading from '../../../components/Loader/Loader';
 import PostForm from '../../Post/component/PostForm';
+import Sidebar  from '../Sidebar'
 import './createpost.css'
 
 const initialState = {
@@ -66,6 +67,8 @@ const handleInputChange = (e) => {
   };
 
   return (
+    <>
+    {/* <Sidebar /> */}
     <div>
       {isLoading && <Loading />}
       <h3>Write a Blog Post</h3>
@@ -80,6 +83,7 @@ const handleInputChange = (e) => {
       savePost={savePost}
       />
     </div>
+    </>
 
   );
 }
